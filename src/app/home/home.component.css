@@ -1,0 +1,218 @@
+.bg-custom{
+    background-image:url('../../assets/images/header-bg.png');
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-position: center;
+     align-items: center;
+ }
+ 
+ 
+ .text-green{
+     color: #4DB319;
+ }
+
+ .active_item{
+    background-color:#318CD4!important;
+    color: white;
+ }
+ 
+ .text-100{
+     font-weight: 100!important;
+ }
+ .product-tilte{
+     margin-bottom: 0.7rem;
+     font-weight: 100;
+    
+ }
+ .badge {
+     display: inline-block;
+     padding: 0.35em 0.65em;
+     font-size: 0.5em;
+     font-weight: 100;
+     line-height: 1;
+     color: #fff;
+     text-align: center;
+     white-space: nowrap;
+     vertical-align: middle;
+     border-radius: 0.25rem;
+     margin-top: 7px;
+ }
+ .product-title:hover{
+     color: #eb2426!important;
+ }
+ .active-bg{
+     background-color: #eb2426!important;
+     color : white;
+ }
+ 
+ .icone {
+     width: 13px;
+ }
+ 
+ .titre{
+     font-size: 1.3rem!important;
+     font-weight: 500!important;
+    color: #318CD4!important;
+ }
+ 
+ .cat-img{
+     vertical-align: middle;
+     width: 25px;
+     border-radius: 5px;
+     margin-right: 5px;
+ }
+ 
+ .card-text:last-child {
+     margin-top: -5px;
+ }
+ 
+ .card-body {
+     flex: 1 1 auto;
+     padding-top: 1rem;
+     padding-bottom: 1rem;
+     padding-left: 0.5rem;
+     padding-right: 0.5rem;
+ }
+ 
+ .cat-title{
+     font-size: .8rem!important;
+     font-weight: 100!important;
+     text-transform:capitalize;
+ }
+ 
+ .product-title{
+     font-size: 1rem!important;
+     font-weight: 500;
+     text-transform: capitalize;
+ }
+ 
+ @media only screen and (max-width: 768px) {
+     /* For mobile phones: */
+     .new-post{
+         height: auto;
+         padding: 16px!important;
+     }
+ 
+     .card-img-top {
+         width: 100%;
+         height: 35vw!important;
+         object-fit: cover;
+     }
+ 
+     
+ }
+ 
+ 
+ 
+ @media only screen and (min-width: 768px) {
+ 
+     .card-img-top {
+         width: 100%;
+         height:8vw!important;
+         object-fit: cover;
+     }
+ 
+ /*     .card-body {
+         flex: 1 1 auto;
+         padding: 1rem 1rem;
+         height: 14vw;
+     } */
+ 
+     
+ }
+ 
+ .hand{
+     cursor: pointer;
+  }
+ 
+ .new-post{
+     height: auto;
+     padding: 40px;
+ }
+ .add-post{
+     font-size: 1.2vw!important;
+     text-align: center;
+     padding-top: 10px;
+ }
+ 
+ .product-price{
+     margin-bottom: 0.7rem;
+     font-weight: 400;
+     color :  #4DB319;
+     font-size: 12px!important;
+     margin-top: -40px!important;
+ }
+ 
+ .img-center-v{
+     margin-left: auto;
+     margin-right: auto;
+     display: block;
+     width: 40%;
+ }
+ 
+ .card-img-top {
+     width: 100%;
+     height: 10vw;
+     object-fit: cover;
+ }
+ 
+ .img-center{
+     margin-left: auto;
+     margin-right: auto;
+     display: block;
+     width: 100%;
+ }
+ .pp{
+     padding-top: 25px;
+     padding-bottom: 25px;
+ }
+ @import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
+ 
+ body {
+     background-color: #eee;
+     font-family: "Poppins", sans-serif;
+     font-weight: 300
+ }
+ 
+ 
+ 
+ .search {
+     position: relative;
+     box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+     padding-left : 15px;
+     padding-right: 15px;
+ }
+ 
+ 
+ .search input {
+     height: 60px;
+     text-indent: 25px;
+     border: 2px solid #d6d4d4
+ }
+ 
+ .search input:focus {
+     box-shadow: none;
+     border: 2px solid #eb2426
+ }
+ 
+ .search .fa-search {
+     position: absolute;
+     top: 20px;
+     left: 16px
+ }
+ 
+ 
+ 
+ .search button {
+     position: absolute;
+     top: 5px;
+     right: 5px;
+     height: 50px;
+     width: 110px;
+     background: #eb2426;
+     margin-right: 15px;
+ }
+ 
+ .img-book{
+     width: 15px !important;
+ }

@@ -1,0 +1,44 @@
+<div class="container-fluid bg-g" style="margin-top:16px">
+    <div id="main-wrapper" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters ">
+                            <div class="col-lg-12">
+                                <div class="p-5 pade">
+                                    <h6 class="h5 mb-0">Véfiez votre boite de messagerie</h6>
+                                    <p lass="text-muted mt-2 mb-5" *ngIf="authService.userData as user">Nous vous avons envoyé un mail à catte adresse : <strong style="color: #439A43;">{{user.email}}</strong></p>
+                                    <p class="text-muted mt-2 mb-5">Pas reçu ? <a 
+                                    >Verifiez également dans vos spams.</a></p>
+   
+                                    
+                                    <form>
+                                        
+
+                                        <div class="row">
+                                            <div class="col-lg-6" style="background-color: white;">
+                                                <div class="input-group mb-1 mt-2">
+                                                    <button  type="btn" (click)="send()" class="btn btn-primary">Renvoyez-moi le lien de d'activation</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6" style="background-color: white;">
+                                                <div class="input-group mb-1 mt-2">
+                                                    <button  type="btn" (click)="login()" class="btn btn-secondary">Retournez à la connexion</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end card-body -->
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- Row -->
+    </div>
+</div>

@@ -1,1 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~ngx-photo-editor/photo-editor.css";
+
+.delete{
+    cursor: pointer;
+    color:#e9282f;
+}
+.edit {
+    cursor: pointer;
+    color:green; 
+}
+
+
+
+.bouton{
+    background-color: #e9282f!important;
+    border-color:  #e9282f!important;
+    color: white!important;
+}
+
+.background{
+    background-color : #FFBD4F!important;
+    
+}
+
+.search input{
+    height: 60px;
+    text-indent: 25px;
+    border: 1px solid #c40934!important;
+}
+
+
+.ab {
+    animation-duration: 400ms;
+    animation-name: blink;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+ }
+
+ .ab:hover {
+    opacity: 1;
+ }
+
+ @keyframes blink {
+    from {
+       opacity: 1;
+    }
+    to {
+       opacity: 0;
+    }
+    
+  }
+
+  @keyframes blink {
+    from {
+        background-color:#c40934;
+        border-color: #c40934;
+    }
+    to {
+        background-color:green;
+        border-color: green;
+    }
+}
+

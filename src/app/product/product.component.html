@@ -1,0 +1,84 @@
+<div class="album bgray">
+
+    <div class="container">
+        <!-- product -->
+        <div class="breadcumbs" style="margin-top:-20px;padding-bottom: 50px;">
+          <a style="color:#4CB0E9!important;"  href="javascript:history.back()" class="bread-text hand">Retour</a>
+        </div>
+
+        <div class="product-content product-wrap clearfix product-deatil">
+            <div class="row">
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="bg-white" style="width: 80%;">
+                        <div class="product-image">
+                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                  <div class="carousel-item active">
+                                    <img [src]="product.image"  class="img-responsive d-block w-100" alt="...">
+                                  </div>
+                                     <!--          <div  class="carousel-item" *ngFor="let imageItem of infos.images_photos;">
+                                    <img src="https://admin.theprintplus-cm.com{{imageItem.image}}" class="img-responsive d-block w-100" alt="...">
+                                  </div> -->
+                                </div>
+                                     <!--                         <button *ngIf="infos.images_photos?.length>0" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button *ngIf="infos.images_photos?.length>0" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Next</span>
+                                </button> -->
+                              </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 col-md-offset-1 col-sm-12 col-xs-12">
+                    <h1 class="name">
+                        {{product.title || ""}}
+                    </h1>
+                    <p class="desc" innerHTML = "{{ product.description }}">
+                        
+                    </p>
+
+
+                    <div class="row py-33" >
+                        <div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-4 rounded-1">
+                           <span class="pricer">{{product.price}} FCFA</span>
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="padding-left: .3rem;">
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <span  (click)="addToCart(product)"  class="hand btn btn-pay btn-lg">Ajouter à mon package</span>
+                        </div>
+                    </div>
+
+
+                    <img src="../../assets/images/pub.svg" style="margin-top: 25px;" width="300">
+                </div>
+
+
+
+
+           
+                   
+
+
+
+                        <!--     <div *ngIf="infos.promotion" class="certified">
+                            <p><b>50%</b> de réduction</p>
+                         </div> -->
+
+               
+
+                
+            </div>
+        </div>
+        <!-- end product -->
+    </div>
+</div>
+
+

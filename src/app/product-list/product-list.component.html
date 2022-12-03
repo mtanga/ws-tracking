@@ -1,0 +1,81 @@
+<div class="container">
+    <main>
+      <div class="py-5 text-center">
+       
+        <h2>Paiement</h2>
+        <p class="lead">En cliquant sur le bouton <span style="color:green;font-weight: 700;">Passez la commande</span> vous aurez des liens de téléchargement des logiciels que vous avez choisi. Les logiciels seront criptés jursquà ce que nous recevons la preuve de votrre paiement.</p>
+        <p class="lead">
+          Pour recevoir le code afin d'entrer en possession de vos logiciels, Nous vous prions de bien vouloir nous faire parvenir votre preuve de paiement ici : <a style="color:green!important;font-weight: 700;" href="https://api.whatsapp.com/send/?phone=237674717852&text&type=phone_number&app_absent=0" target="_blank">+237 674 717 852</a>
+      </p>
+      </div>
+  
+      <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Votre package</span>
+            <span class="badge bg-primary rounded-pill">{{product.length}}</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li *ngFor="let item of product;" class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0" style="color:black;">{{item.product.title}}</h6>
+                <small class="text-muted">Quantité : {{item.qte}}</small>
+              </div>
+              <span class="text-muted">{{item.product.price}} F CFA</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span style="color:black;">Total à payer : </span>
+              <strong style="color:black;">{{totalAmount()}} F CFA</strong>
+            </li>
+          </ul>
+
+        </div>
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">Informations personnelles</h4>
+          <form class="needs-validation" novalidate>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">Prénom</label>
+                <input [disabled]='true' type="text" class="form-control" id="firstName" placeholder="" [value]="user.last_name" required>
+                <div class="invalid-feedback">
+                  
+                </div>
+              </div>
+  
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Nom</label>
+                <input type="text" [disabled]='true' class="form-control" id="lastName" placeholder="" [value]="user.first_name" required>
+                <div class="invalid-feedback">
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">Email</label>
+                <input type="text" [disabled]='true' class="form-control" id="firstName" placeholder="" [value]="user.email" required>
+                <div class="invalid-feedback">
+                </div>
+              </div>
+  
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Téléphone</label>
+                <input type="text" [disabled]='true' class="form-control" id="lastName" placeholder="" [value]="user.phone"required>
+                <div class="invalid-feedback">
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+  
+            <button (click)="payNow()" class="ab w-100 btn btn-primary btn-lg" type="submit">Passer la commande maintenant</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+
+    <div class="cookie-consent"  *ngIf="noticeService.buy==true"> 
+      <span>Bravo vous venez de valider votre commande.<br><br>Pour profiter de vos logiciels veuillez nous faire parvenir une preuve de votre paiement ici : <span>+237 674 717 852</span> <br><br> <a (click)="noticeService.buy=false"  class="bouton ml-1 text-decoration-none cart-button">Fermer cette fenêtre</a> </span>
+      <div class="mt-2 d-flex align-items-center justify-content-center g-2">
+          <!--  <button class="allow-button mr-1" >Payer maintenant</button>  -->
+      </div>
+  </div>

@@ -1,0 +1,83 @@
+
+<div id="cloud-container" class="container-fluid bg-g" >
+    <div id="main-wrapper" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters ">
+                            <div class="col-lg-12">
+                                <div class="p-5 pade">
+                                    <h6 class="h5 mb-0">Connexion</h6>
+                                   <!--  <p class="text-muted mt-2 mb-5">Vous êtes nouveau ? .<a [routerLink]="['/nouveau']">Créez votre compte maintenant.</a></p> -->
+                <!--                     <nav class="nav nav-pills flex-column flex-sm-row" style="padding-bottom: 15px;">
+                                        <span [ngClass]="{'active': loginEmail===true}"  (click)="loginEmail=true" class="flex-sm-fill text-sm-center nav-link hand" aria-current="page" >Connexion avec email</span>
+                                        <span [ngClass]="{'active': loginEmail===false}"  (click)="loginEmail=false"  class="flex-sm-fill text-sm-center nav-link hand" >Connexion avec téléphone</span>
+                                    </nav> -->
+                                    <form>
+                                        <div *ngIf="loginEmail===true" class="form-group mb-1">
+                                            <label for="exampleInputEmail1">Email address</label>
+                                            <input type="email" [(ngModel)]="email" name="email" class="form-control" id="exampleInputEmail1" />
+                                        </div>
+
+
+
+                                        <div *ngIf="loginEmail===false" class="form-group mb-1">
+                                            <label for="exampleInputEmail1">Téléphone</label>
+                                            <input type="text"
+                                            name="phone_number"
+                                            class="form-control phone"
+                                            ng2TelInput
+                                            [ng2TelInputOptions]="{initialCountry: 'cm'}"
+                                            (hasError)="hasError($event)"
+                                            (ng2TelOutput)="getNumber($event)"
+                                            (intlTelInputObject)="telInputObject($event)"
+                                            (countryChange)="onCountryChange($event)" />
+
+                                        </div>
+
+
+
+                                        <div class="col-lg-12" style="background-color: white;">
+                                            <label for="exampleInputEmail1">Mot de passe</label>
+                                            <div class="input-group mb-1 mt-2">
+                                                <input [type]="showo ? 'text' : 'password'" [(ngModel)]="password" name="opassword" class="form-control" id="exampleInputPassword1" />
+                                                <span (click)="passwordo()" class="hand input-group-text">{{showo ? 'Cacher' : 'Voir'}}</span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row" style="padding-top:10px;padding-bottom:10px;">
+                                            <div class="col-lg-6" style="background-color: white;">
+                                                <div class="form-check mb-3">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                      Se souvenir de moi
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6" style="background-color: white;">
+                                                 <a [routerLink]="['/mot-de-passe-oublie']">Mot de passe oublié</a>
+                                            </div>
+                                        </div>
+
+
+                                        <button *ngIf="loginEmail===true" (click)="login_Email()" type="btn" class="btn btn-primary bouton">Connexion</button>
+                                        <button *ngIf="loginEmail===false" (click)="loginPhone()" type="btn" class="btn btn-primary bouton">Connexion</button>
+                                    </form>
+                                        <!-- end card -->
+                                       <!--  <p class="text-muted text-center mt-3 mb-0">Mot de passe perdu ? <a [routerLink]="['/recupreation']" class="text-primary ml-1">Recupérez-le maintenant</a></p> -->
+                                        <!-- end row -->
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end card-body -->
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- Row -->
+    </div>
+</div>

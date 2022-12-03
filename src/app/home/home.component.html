@@ -1,0 +1,76 @@
+<section class="py-5 text-center  bg-custom">
+    <div class="row height d-flex justify-content-center align-items-center">
+      <div class="col-md-6 pp vertical-center">
+        <p class="titre text-white text-100">Rechercher un logiciel</p>
+          <div class="search"> 
+              <i class="fa fa-search"></i>
+             <input [(ngModel)]="searchValue" (keyup)="filterList()" type="text" class="form-control" placeholder="Je cherche ..." > 
+             <button class="text-100 btn bouton" (click)="filterList()">Rechercher</button>
+             </div>
+      </div>
+  </div>
+</section>
+
+
+
+
+  <!-- home content -->
+  <div class="album py-3 bg-light">
+    <div class="container">
+      <div class="row">
+          <div class="col-sm-3 col-md-3 mb-3">
+            <div class="list-group" >
+              <a  class="cat-title text-100 list-group-item list-group-item-action active-bg">
+                Catégories 
+              </a>
+              <a  (click)="getTodo()" [ngClass]="{
+                'active_item': todo === true,
+                'hand' : true,
+                'list-group-item' : true,
+                'list-group-item-action' : true
+              }">
+                <!-- <img [src]="category.image" class="cat-img" alt="...">    -->
+                <span class="cat-title">Afficher tout</span> 
+              </a>
+
+                <a  (click)="goToCategory(category)" *ngFor="let category of categories"  [ngClass]="{
+                  'active_item': categoryItem === category.id,
+                  'hand' : true,
+                  'list-group-item' : true,
+                  'list-group-item-action' : true
+                }">
+                    <img [src]="category.image" class="cat-img" alt="...">   
+                    <span class="cat-title">{{category.title}}</span>  
+                 <!--    <span class="badge rounded-pill bg-primary float-end">{{category.qte}}</span> -->
+                </a>
+          </div>
+          </div>
+          <div class="col-sm-9 col-md-9">
+            <!-- For products -->
+            <div class="py-3">
+              <h6 class="fw-light titre" style="margin-top: -15px;">Logiciels récemment ajoutés</h6>
+              <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-3">
+               
+              <div class="col" (click)="goToProduct(item.id)" *ngFor="let item of products;">
+                  <div class="hand card shadow-sm">
+                    <img [src]="item.image"  alt="Add post"  class="card-img-top img-center" />
+                    <div class="card-body">
+                      <div class="justify-content-between align-items-center">
+                        <div class="">
+                          <p class="card-text product-title">{{ shorten(item.title, 20)}}</p><br/>
+                          <p class="card-text product-price">{{format(item.price)}} F  CFA</p>
+                   <!--        <p class="card-text" style="font-size:10px!important; text-transform: capitalize;">
+                            <img src="../../assets/images/location-outline.svg"  alt="Location"  class="icone" />{{format(item.details.citie)}}, {{item.details.locality}}
+                          </p> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>

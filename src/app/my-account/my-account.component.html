@@ -1,0 +1,507 @@
+<div class="container" style="margin-top:50px">
+    <div class="main-body">
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                   <!--  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150"> -->
+                    <div class="mt-3">
+                      <h4>{{user.first_name}} {{user.last_name}}</h4>
+<!--                       <p class="text-secondary mb-1">Full Stack Developer</p>
+                      <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p> -->
+                      <button (click)="logout()" class="btn btn-primary">Déconnexion</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+              <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+                  <li (click)="tab='orders'" class="hand list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0" style="color:black;">Liste des commandes</h6>
+                  </li>
+
+              <!--     <li (click)="tab='addresses'" class="hand list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Mes Cartes</h6>
+                  </li> -->
+
+                  <li (click)="tab='profile'" class="hand list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0" style="color:black;">Liste des étapes</h6>
+                  </li>
+
+                  <li (click)="tab='security'" class="hand list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0" style="color:black;">Mot de passe</h6>
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+            
+            <div  *ngIf="tab=='addresses'" class="col-md-8">
+              <h4>Mon Addresse</h4>
+              <div class="card mb-3" *ngIf="edit_a==true">
+                <div class="card-body">
+                  <form #f="ngForm" (ngSubmit)="editadresse(f)">
+                      <div class="row">
+                        <div class="col-lg-12">
+                              <div class="form-group mb-1">
+                                  <label for="exampleInputPassword1">Téléphone</label>
+                                  <input type="text"
+                                  [value]="infos?.phone"
+                                  class="form-control phone"
+                                  ng2TelInput
+                                  [ng2TelInputOptions]="{initialCountry: 'cm'}"
+                                  (hasError)="hasError($event)"
+                                  (ng2TelOutput)="getNumber($event)"
+                                  (intlTelInputObject)="telInputObject($event)"
+                                  (countryChange)="onCountryChange($event)" />
+                              </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                  <div class="form-group mb-1">
+                                      <label for="exampleInputPassword1">Pays</label>
+                                     <!--  <input type="text" [(ngModel)]="infos.pays" name="pays" [value]="infos.pays" class="form-control" id="exampleInputPassword1" /> -->
+                                      <select [(ngModel)]="infos.pays" name="pays" class="form-control" aria-label=".form-select-lg example">
+                                        <option [value]="infos.pays">{{infos.pays || "Veuillez sélectionner un pays"}}</option>
+                                        <option *ngFor="let contry of myData;" value="contry.text">{{contry.text}}</option>
+                                      </select>
+                                  </div>
+                              </div>
+                              <div class="col-lg-4">
+                                  <div class="form-group mb-1">
+                                      <label for="exampleInputPassword1">Région</label>
+                                      <input type="text" [(ngModel)]="infos.region" name="region" [value]="infos.region" class="form-control" id="exampleInputPassword1" />
+                                  </div>
+                              </div>
+                              <div class="col-lg-4">
+                                <div class="form-group mb-1">
+                                    <label for="exampleInputPassword1">Ville</label>
+                                    <input type="text" [(ngModel)]="infos.ville" name="ville" [value]="infos.ville" class="form-control" id="exampleInputPassword1" />
+                                </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="form-group mb-1">
+                                  <label for="exampleInputPassword1">Adresse</label>
+                                  <input type="text" [(ngModel)]="infos.rue" name="rue" [value]="infos.rue" class="form-control" id="exampleInputPassword1" />
+                              </div>
+                            </div>
+
+                          <div class="col-lg-6">
+                            <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Boite postale</label>
+                                <input type="text" [(ngModel)]="infos.po" name="po" [value]="infos.po" class="form-control" id="exampleInputPassword1" />
+                            </div>
+                        </div>
+                          </div>
+                        <button type="submit"  class="btn btn-info">Valider</button>
+                    </form>
+                </div>
+              </div>
+
+              <div class="card mb-3" *ngIf="edit_a==false">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Téléphone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{infos.phone}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Pays</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{infos.pays}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Région</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{infos.region}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Ville</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{infos.ville}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Boite postale</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{infos.po}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Addresse</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{infos.rue}}
+                    </div>
+                  </div>
+
+
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <span (click)="edit_a=true" class="btn btn-info" target="__blank" >Modifier</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+            </div>
+            <div  *ngIf="tab=='orders'" class="col-md-8">
+              <h4>Liste des commandes</h4>
+
+              <div class="input-group mb-3" *ngIf="editc==false && showOn==false">
+                <input type="text" class="form-control" placeholder="Rechercher un numéro de commande" [(ngModel)]="searchValue" (keyup)="filterList()" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">Rechercher</span>
+                </div>
+              </div>
+
+              <span style="margin-bottom: 15px;" (click)="editc=true" class="btn btn-info"  *ngIf="editc==false && showOn==false">Ajouter une nouvelle commande</span><br/>
+
+
+
+              <div class="my-3 p-3 bg-body rounded shadow-sm" *ngIf="showOn==true">
+
+                
+
+
+
+                <span style="cursor:pointer;color:green;" (click)="disableShow()">Retourner à la liste des commandes</span>
+                
+                <br/> <br/> <br/>
+                <div class="add-steps">
+
+
+                  <h5 style="color:black;">Etapes actuelles de la commande <span style="font-weight: 800;">{{order.order_number}}</span></h5>
+                  <p>Nom du client : <span style="font-weight: 800;">{{order.customer_name}}</span>  |  Email du cleint : <span style="font-weight: 800;">{{order.customer_email}}</span></p>
+                  <div class="form-checks" *ngFor="let etape of order.steps">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked disabled>
+                    <label class="form-check-label" for="flexCheckChecked">
+                      {{etape.title}}
+                    </label>
+                    <p class="desc" innerHTML = "{{ etape.description }}">
+                  </div>
+
+
+                    <br/><br/>
+
+
+                    <br/><br/><br/>
+                    <h5 style="color:black;">Souhaitez-vous ajouter une étape prédéfinie à cette commande ?</h5>
+                    <div class="form-checkss form-switch" *ngFor="let checklist of allSteps">
+                      <input class="form-check-input" type="checkbox" value="{{checklist.uid}}" ng-checked="response.indexOf(allSteps) !== -1" (change)="checkCheckBoxvalue($event)"  [disabled]="checkExistStep(checklist.uid)==true" [checked]="checkExistStep(checklist.uid)==true">
+                      <label class="form-check-label" for="flexSwitchCheckDefault">{{checklist.title}}</label>
+                      <p class="desc" innerHTML = "{{ checklist.description }}">
+                    </div>
+
+
+                    <br/><br/>
+                    <h5 style="color:black;">Souhaitez-vous ajouter une étape personnlaisée à cette commande?</h5>
+                    <form #f="ngForm" (ngSubmit)="profile(f)">
+                      <div class="row">
+                        <div class="col-lg-12">
+                              <div class="form-group mb-1">
+                                  <label for="exampleInputPassword1">Titre de l'étape</label>
+                                  <input type="text" [(ngModel)]="step.title" name="title" [value]="step.title" class="form-control" id="exampleInputPassword1" />
+                              </div>
+                          </div>
+                          <div class="col-lg-12">
+                              <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Description de l'étape</label>
+                                <ckeditor [editor]="editor" [(ngModel)]="step.description" [data]="data" [ngModelOptions]="{standalone: true}"></ckeditor> 
+    
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <button  type="submit" (click)="addCustomStep()" class="btn btn-info">Ajouter</button>
+                    </form>
+
+                  </div>
+
+              </div>
+              
+
+              <div class="my-3 p-3 bg-body rounded shadow-sm" *ngIf="editc==false && showOn==false">
+                <h6 class="border-bottom pb-2 mb-0">Commandes disponibles <!-- {{paiements.length}} --> </h6>
+                <div *ngFor="let item of orders">
+                  <div class="d-flex text-muted pt-3"  >
+                    <img class="img-thumbnail rounded" src="../../assets/images/logowx.png" width="150" style="margin-right: 25px;" />
+                    <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                      <div class="d-flex justify-content-between">
+                        <strong class="text-gray-dark">{{item.order_number}}</strong>
+                        <span>
+                          <span style="cursor:pointer;color:red;" (click)="deleteo(item.uid)">Supprimer</span>
+                          <span style="cursor:pointer;color:purple;padding-left: 10px;" (click)="showIt(item)">Afficher</span>
+                          <span style="cursor:pointer;color:green;padding-left: 10px;" (click)="editSteps(item)">Modifier</span>
+                        </span>
+                      </div>
+                      <p class="desc" >Client : {{item.customer_name}} | Mail {{item.customer_email}}
+            
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+
+              <div class="card mb-3" *ngIf="editc==true && showOn==false" style="width: 100%;">
+                <div class="card-body">
+                    <form #f="ngForm" (ngSubmit)="profile(f)">
+                      <div class="row">
+                        <h4>Informations de la commande</h4>
+                        <div class="col-lg-12">
+                              <div class="form-group mb-1">
+                                  <label for="exampleInputPassword1">Numéro de commande</label>
+                                  <input type="text" [(ngModel)]="order.order_number" name="order_number" [value]="order.order_number" (ngModelChange)="getUid($event)" placeholder="Ex : FGF-20220601" class="form-control" id="exampleInputPassword1" />
+                              </div>
+                          </div>
+                      </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                              <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Email du client</label>
+                                <input type="text" [(ngModel)]="order.customer_email" name="customer_email" [value]="order.customer_email" class="form-control" id="exampleInputPassword1" />
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                              <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Nom du client</label>
+                                <input type="text" [(ngModel)]="order.customer_name" name="customer_name" [value]="order.customer_name" class="form-control" id="exampleInputPassword1" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-6">
+                              <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Date de création de la commande</label>
+                                <input type="date" [(ngModel)]="order.date_order" name="date_order" [value]="order.date_order" class="form-control" id="exampleInputPassword1" />
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                              <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Type de produit</label>
+                                <input type="text" [(ngModel)]="order.type" name="type" [value]="order.type" class="form-control" id="exampleInputPassword1" />
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="row">
+                          <div class="col-lg-6">
+                              <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Méthode d'expédition</label>
+                                <!--  <input type="text" [(ngModel)]="infos.pays" name="pays" [value]="infos.pays" class="form-control" id="exampleInputPassword1" /> -->
+                                 <select [(ngModel)]="order.method" name="method" class="form-control" aria-label=".form-select-lg example">
+                                   <option value="Frêt aérien">Frêt aérien</option>
+                                   <option value="Frêt maritine">Frêt maritine</option>
+                                 </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <br>
+                        <div class="row">
+                          <h4>Agent en charge de cette commande</h4>
+                          <div class="col-lg-6">
+                              <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Nom & Prénom</label>
+                                <select [(ngModel)]="order.agent_name" name="agent_name" class="form-control" aria-label=".form-select-lg example">
+                                  <option value="ND" disabled selected>Veuillez sélectionner un agent</option>
+                                  <option value="Mr Georges Frédéric.A">Mr Georges Frédéric.A</option>
+                                  <option value="Mme Darla Maeva.O">Mme Darla Maeva.O</option>
+                                  <option value="Mme Claudia.B">Mme Claudia.B</option>
+                                  <option value="Mme Kerene.A">Mme Kerene.A</option>
+                                  <option value="Mme Dib.F">Mme Dib.F</option>
+                                  <option value="Mme Cissoko. M">Mme Cissoko. M</option>
+                                </select>
+
+                               <!--  <input type="text" [(ngModel)]="order.agent_name" name="agent_name" [value]="order.agent_name" class="form-control" id="exampleInputPassword1" /> -->
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                              <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Téléphone</label><br>
+                                <input type="text"
+                                [value]="order?.agent_phone"
+                                class="form-control phone"
+                                ng2TelInput
+                                [ng2TelInputOptions]="{initialCountry: 'cm'}"
+                                (hasError)="hasError($event)"
+                                (ng2TelOutput)="getNumber($event)"
+                                (intlTelInputObject)="telInputObject($event)"
+                                (countryChange)="onCountryChange($event)" />
+                            </div>
+                          </div>
+                        </div>
+
+
+<br>
+
+
+
+                        <button  style="border-color:green;background-color: green;" type="submit" (click)="editc=false" class="btn btn-info">Annuler</button>
+                        <button style="margin-right: 10px;" *ngIf="modifyc==false" type="submit" (click)="saveCmd()" class="btn btn-info">Enregistrer</button>
+                        
+                        <button style="margin-right: 10px;" *ngIf="modifyc==true" type="submit" (click)="editThiscmd()" class="btn btn-info">Modifier</button>
+                    </form>
+                </div>
+              </div>
+
+
+
+
+
+
+
+         
+              <ngx-loading
+              [show]="loading"
+              [config]="{ backdropBorderRadius: '3px' }"
+            ></ngx-loading>
+            </div>
+
+            <!-- Gestion des étapes -->
+           
+            <div  *ngIf="tab=='profile'" class="col-md-8">
+              <h4>Liste des étapes</h4>
+              <span  (click)="edit=true" class="btn btn-info"  >Ajouter une nouvelle étape</span><br/>
+
+
+
+              <div class="my-3 p-3 bg-body rounded shadow-sm" *ngIf="edit==false">
+                <h6 class="border-bottom pb-2 mb-0">Etapes disponibles <!-- {{paiements.length}} --> </h6>
+                <div *ngFor="let items of allSteps">
+                  <div class="d-flex text-muted pt-3"  >
+                    <img class="img-thumbnail rounded" src="../../assets/images/logowx.png" width="150" style="margin-right: 25px;" />
+                    <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                      <div class="d-flex justify-content-between">
+                        <strong class="text-gray-dark">{{items.title}}</strong>
+                        
+                       
+                        <span>
+                          <span style="cursor:pointer;color:red;" (click)="delete(items.uid)">Supprimer</span>
+                          <span style="cursor:pointer;color:green;padding-left: 10px;" (click)="editStep(items)">Modifier</span>
+                        </span>
+                      </div>
+                      <p class="desc" innerHTML = "{{ items.description }}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+             
+
+              <div class="card mb-3" *ngIf="edit==true" style="width: 100%;">
+                <div class="card-body">
+                    <form #f="ngForm" (ngSubmit)="profile(f)">
+                      <div class="row">
+                        <div class="col-lg-12">
+                              <div class="form-group mb-1">
+                                  <label for="exampleInputPassword1">Titre de l'étape</label>
+                                  <input type="text" [(ngModel)]="step.title" name="title" [value]="step.title" class="form-control" id="exampleInputPassword1" />
+                              </div>
+                          </div>
+                          <div class="col-lg-12">
+                              <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Description de l'étape</label>
+                                <ckeditor [editor]="editor" [(ngModel)]="step.description" [data]="data" [ngModelOptions]="{standalone: true}"></ckeditor> 
+    
+                            </div>
+                          </div>
+                        </div>
+                        <button  style="border-color:green;background-color: green;" type="submit" (click)="edit=false" class="btn btn-info">Annuler</button>
+                        <button style="margin-right: 10px;" *ngIf="modify==false" type="submit" (click)="saveStep()" class="btn btn-info">Enregistrer</button>
+                        
+                        <button style="margin-right: 10px;" *ngIf="modify==true" type="submit" (click)="editThisStep()" class="btn btn-info">Modifier</button>
+                    </form>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div  *ngIf="tab=='security'" class="col-md-8">
+              <h5>Changer le mot de passe</h5>
+              <div class="card mb-3">
+                <div class="card-body">
+                    <form>
+                      <div class="row">
+                        <div class="col-lg-12" style="background-color: white;">
+                          <label for="exampleInputEmail1">Ancien mot de passe</label>
+                            <div class="input-group mb-1">
+                                
+                                <input [type]="showo ? 'text' : 'password'" [(ngModel)]="opassword" name="opassword" class="form-control"  id="exampleInputPassword1" />
+                                <span (click)="passwordo()" class="hand input-group-text">{{showo ? 'Voir' : 'Cacher'}}</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" style="background-color: white;">
+                          <label for="exampleInputEmail1">Nouveau mot de passe</label>
+                            <div class="input-group mb-1">
+                              <input [type]="show ? 'text' : 'password'" [(ngModel)]="password"  name="password" class="form-control" id="exampleInputPassword1" />
+                              <span (click)="passwordv()" class="hand input-group-text">{{show ? 'Voir' : 'Cacher'}}</span>
+                          </div>
+                          </div>
+                          <div class="col-lg-6" style="background-color: white;">
+                            <label for="exampleInputEmail1">Repéter le nouveau mot de passe</label>
+                            <div class="input-group mb-1">
+                              <input [type]="showc ? 'text' : 'password'" [(ngModel)]="cpassword"  name="cpassword" class="form-control" id="exampleInputPassword1" />
+                              <span (click)="passwordc()" class="hand input-group-text">{{showc ? 'Voir' : 'Cacher'}}</span>
+                          </div>
+                          </div>
+                        </div>
+                        <button type="btn" (click)="pass()" class="btn btn-info">Valider</button>
+                    </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="cookie-consent"  *ngIf="noticeService.buy==true"> 
+      <span>Bravo vous venez de valider votre commande.<br><br>Pour profiter de vos logiciels veuillez nous faire parvenir une preuve de votre paiement ici : <span>+237 674 717 852</span> <br><br> <a (click)="noticeService.buy=false"  class="bouton ml-1 text-decoration-none cart-button">Fermer cette fenêtre</a> </span>
+      <div class="mt-2 d-flex align-items-center justify-content-center g-2">
+          <!--  <button class="allow-button mr-1" >Payer maintenant</button>  -->
+      </div>
+    </div>

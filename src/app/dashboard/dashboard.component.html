@@ -1,0 +1,368 @@
+<div class="container" style="margin-top:50px">
+    <div class="main-body">
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                   <!--  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150"> -->
+                    <div class="mt-3">
+                      <h4>{{user.first_name}} {{user.last_name}}</h4>
+<!--                       <p class="text-secondary mb-1">Full Stack Developer</p>
+                      <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p> -->
+                      <button (click)="logout()" class="btn btn-primary">Déconnexion</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+              <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+                  <li (click)="tab='orders'" class="hand list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0" >Logiciels</h6>
+                  </li>
+
+                  <li (click)="tab='addresses'" class="hand list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Catégories</h6>
+                  </li>
+
+                  <li (click)="tab='profile'" class="hand list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Paiements</h6>
+                  </li>
+
+                  <li (click)="tab='downloads'" class="hand list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Téléchargements</h6>
+                  </li>
+
+                  <li (click)="tab='security'" class="hand list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Mot de passe</h6>
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+            
+
+            <div  *ngIf="tab=='downloads'" class="col-md-8">
+              <h4>Téléchargements</h4>
+               <div class="my-3 p-3 bg-body rounded shadow-sm">
+              <!--   <h6 class="border-bottom pb-2 mb-0">Package </h6> -->
+                <div *ngFor="let items of paiements">
+                  <div class="d-flex text-muted pt-3"  *ngFor="let item of items.cart">
+                    <img class="img-thumbnail rounded" [src]="item.product.image" width="50" style="margin-right: 25px;" />
+                    <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                      <div class="d-flex justify-content-between">
+                        <strong class="text-gray-dark">{{item.product.title}}</strong>
+                       <!--  <a [href]="item.product.link">Télécharger</a> -->
+                      </div>
+                      <span class="d-block">{{items.user.displayName}}</span>
+                      <span class="d-block">{{items.user.phone}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+
+            </div>
+
+            <div  *ngIf="tab=='addresses'" class="col-md-8">
+              <h4>Catégories</h4>
+              <button type="button" (click)="edit_a=true" class="btn btn-primary">Créer</button>
+              <div class="card mb-3  mt-2" *ngIf="edit_a==true">
+                <div class="card-body">
+                  <form #f="ngForm" (ngSubmit)="editadresse(f)">
+                        <div class="row">
+                          <div class="col-lg-12">
+                              <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Titre de la catégorie</label>
+                                <input type="text" [(ngModel)]="category.title" name="region" [value]="category.title" class="form-control" id="exampleInputPassword1" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                              <div class="form-group mb-1">
+                                  <label for="exampleInputPassword1">Image de couverture</label>
+                                  <input type="file" [(ngModel)]="image" name="image" accept="image/*"  #file (change)="fileChangeCategory($event)" class="form-control"/>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="form-group mb-1">
+                              <div class="card" style="width: 18rem;">
+                                <img [src]="category.image" class="card-img-top" [alt]="category.title">
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                      <button *ngIf="!modify" type="btn" (click)="addCategory()" class="btn btn-info">Créer</button>
+                      <button *ngIf="modify" type="btn" (click)="updateCategory(category.id)" class="btn btn-info">Modifier</button>  
+                      <button type="btn" (click)="cancel()" class="btn btn-info" style="background-color: green;border-color:green;margin-right:15px;">Annuler</button>
+
+                    </form>
+                </div>
+              </div>
+
+              <div class="mb-3" *ngIf="edit_a==false">
+                <div class="my-3 p-3 bg-body rounded shadow-sm">
+
+                  <div class="d-flex text-muted pt-3" *ngFor="let item of categories">
+                    <img class="img-thumbnail rounded" [src]="item.image" width="50" style="margin-right: 25px;" />
+                    <div class="pb-3 mb-0 small lh-sm border-bottom w-100" >
+                      <div class="d-flex justify-content-between">
+                        <strong class="text-gray-dark">{{item.title}}</strong>
+                      </div>
+                      <div class="pt-2">
+                        <span class="edit" (click)="update(item)">Modifier</span> |  <span class="delete" (click)="delete(item.id)">Supprimer</span>
+                      </div>
+                      
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div  *ngIf="tab=='orders'" class="col-md-8">
+              <h4>Logiciels</h4>
+              <button type="button" (click)="edit_a2=true" class="btn btn-primary">Créer</button>
+
+              <div class="card mb-3  mt-2" *ngIf="edit_a2==true">
+                <div class="card-body">
+                  <form #f="ngForm" (ngSubmit)="editadresse(f)">
+                      <div class="row">
+                          <div class="col-lg-12">
+                              <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Nom du logiciel</label>
+                                <input type="text" [(ngModel)]="product.title" name="title" [value]="product.title" class="form-control" id="exampleInputPassword1" />
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group mb-1">
+                              <label for="exampleInputPassword1">Catégorie</label>
+                            <!--   <input type="text" [(ngModel)]="product.title" name="title" [value]="product.title" class="form-control" id="exampleInputPassword1" /> -->
+                              <select class="form-select form-select-lg mb-3" [(ngModel)]="product.category" name="category" aria-label=".form-select-lg example">
+                                <option selected>Sélectionner une catégorie</option>
+                                <option [value]="" *ngFor="let category of categories">{{category.title}}</option>
+                              </select>
+                          </div>
+                        </div>
+                      </div>
+
+                        <div class="row">
+                          <div class="col-lg-6">
+                              <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Prix</label>
+                                <input type="number" [(ngModel)]="product.price" name="price" [value]="product.price" class="form-control" id="exampleInputPassword1" />
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="form-group mb-1">
+                              <label for="exampleInputPassword1">Lien de téléchargement</label>
+                              <input type="text" [(ngModel)]="product.link" name="link" [value]="product.link" class="form-control" id="exampleInputPassword1" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-12">
+                              <div class="form-group mb-1">
+                                <label for="exampleInputPassword1">Description du logiciel</label>
+                                <ckeditor [editor]="editor" [(ngModel)]="product.description" [data]="data" [ngModelOptions]="{standalone: true}"></ckeditor> 
+    
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                              <div class="form-group mb-1">
+                                  <label for="exampleInputPassword1">Image de couverture</label>
+                                  <input type="file" [(ngModel)]="image_product" name="image" accept="image/*"  #file (change)="fileChangeProduct($event)" class="form-control"/>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="form-group mb-1">
+                              <div class="card" style="width: 18rem;">
+                                <img [src]="product.image" class="card-img-top" [alt]="product.title">
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                      <button *ngIf="!modify2" type="btn" (click)="addProduct()" class="btn btn-info">Créer</button>
+                      <button *ngIf="modify2" type="btn" (click)="updatePro(product.id)" class="btn btn-info">Modifier</button>  
+                      <button type="btn" (click)="cancel2()" class="btn btn-info" style="background-color: green;border-color:green;margin-right:15px;">Annuler</button>
+
+                    </form>
+                </div>
+              </div>
+
+              <div class="mb-3" *ngIf="edit_a2==false">
+                <div class="my-3 p-3 bg-body rounded shadow-sm">
+
+                  <div class="d-flex text-muted pt-3" *ngFor="let items of products">
+                    <img class="img-thumbnail rounded" [src]="items.image" width="50" style="margin-right: 25px;" />
+                    <div class="pb-3 mb-0 small lh-sm border-bottom w-100" >
+                      <div class="d-flex justify-content-between">
+                        <strong class="text-gray-dark">{{items.title}}</strong>
+                      </div>
+                      <div class="pt-2">
+                        <span class="edit" (click)="updateProduct(items)">Modifier</span> |  <span class="delete" (click)="deleteProduct(items.id)">Supprimer</span>
+                      </div>
+                      
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+         
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div  *ngIf="tab=='profile'" class="col-md-8">
+              <div class="card mb-3" *ngIf="edit==false">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Nom</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.last_name}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Prénom</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.fisrt_name}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div *ngIf="user.email" class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.email}}
+                    </div>
+                  </div>
+                 
+                  <div class="row" *ngIf="user.phone">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.phone}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <span (click)="edit=true" class="btn btn-info" target="__blank" >Modifier</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+              <div class="card mb-3" *ngIf="edit==true">
+                <div class="card-body">
+                    <form #f="ngForm" (ngSubmit)="profile(f)">
+                      <div class="row">
+                        <div class="col-lg-6">
+                              <div class="form-group mb-1">
+                                  <label for="exampleInputPassword1">Prénom</label>
+                                  <input type="text" [(ngModel)]="user.fisrt_name" name="prenom" [value]="user.fisrt_name" class="form-control" id="exampleInputPassword1" />
+                              </div>
+                          </div>
+                          <div class="col-lg-6">
+                              <div class="form-group mb-1">
+                                  <label for="exampleInputPassword1">Nom</label>
+                                  <input type="text" [(ngModel)]="user.last_name" name="nom" [value]="user.last_name" class="form-control" id="exampleInputPassword1" />
+                              </div>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-info">Valider</button>
+                    </form>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div  *ngIf="tab=='security'" class="col-md-8">
+              <h5>Changer le mot de passe</h5>
+              <div class="card mb-3">
+                <div class="card-body">
+                    <form>
+                      <div class="row">
+                        <div class="col-lg-12" style="background-color: white;">
+                          <label for="exampleInputEmail1">Ancien mot de passe</label>
+                            <div class="input-group mb-1">
+                                
+                                <input [type]="showo ? 'text' : 'password'" [(ngModel)]="opassword" name="opassword" class="form-control"  id="exampleInputPassword1" />
+                                <span (click)="passwordo()" class="hand input-group-text">{{showo ? 'Voir' : 'Cacher'}}</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" style="background-color: white;">
+                          <label for="exampleInputEmail1">Nouveau mot de passe</label>
+                            <div class="input-group mb-1">
+                              <input [type]="show ? 'text' : 'password'" [(ngModel)]="password"  name="password" class="form-control" id="exampleInputPassword1" />
+                              <span (click)="passwordv()" class="hand input-group-text">{{show ? 'Voir' : 'Cacher'}}</span>
+                          </div>
+                          </div>
+                          <div class="col-lg-6" style="background-color: white;">
+                            <label for="exampleInputEmail1">Repéter le nouveau mot de passe</label>
+                            <div class="input-group mb-1">
+                              <input [type]="showc ? 'text' : 'password'" [(ngModel)]="cpassword"  name="cpassword" class="form-control" id="exampleInputPassword1" />
+                              <span (click)="passwordc()" class="hand input-group-text">{{showc ? 'Voir' : 'Cacher'}}</span>
+                          </div>
+                          </div>
+                        </div>
+                        <button type="btn" (click)="pass()" class="btn btn-info">Valider</button>
+                    </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </div>

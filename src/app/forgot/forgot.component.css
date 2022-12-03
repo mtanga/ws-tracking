@@ -1,0 +1,84 @@
+@media only screen and (min-width: 1025px) {
+    .bg-g{
+        background-color: #F6F6F6;
+        padding: 60px;
+        margin-bottom: -50px;
+    }
+    .pade{
+        background-color: white;
+        width: 50%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .col-lg-12 {
+        flex: 0 0 auto;
+        width: 100%;
+        background: #f6f6f6;
+    }
+} 
+
+a {
+    color: #eb2426;
+    text-decoration: underline;
+}
+
+.text-primary {
+    color: #eb2426!important;
+}
+
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border: none!important;
+}
+
+
+
+
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background: #eb2426!important;
+    color: white!important;
+  }
+
+
+.hand{
+    cursor: pointer;
+ }
+
+.pade{
+    background-color: white;
+}
+
+.nav-pills .nav-link {
+    border: 0;
+    border-radius: 0.25rem;
+    width: 50%;
+}
+.text-sm-center {
+    text-align: center!important;
+    font-size: 0.8rem;
+}
+
+
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #eb2426;
+}
+
+.btn-primary {
+    background-color: #eb2426 !important;
+    border-color: #eb2426 !important;
+    width: 100%;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #eb2426;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}

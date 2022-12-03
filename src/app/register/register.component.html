@@ -1,0 +1,94 @@
+<div class="container-fluid bg-g" style="margin-top:16px">
+    <div id="main-wrapper" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters ">
+                            <div class="col-lg-12">
+                                <div class="p-5 pade">
+                                    <h6 class="h5 mb-0">Nouveau compte</h6>
+                                    <p class="text-muted mt-2 mb-5">Vous avez déjà un compte ? .<a [routerLink]="['/connexion']">Connectez-vous maintenant.</a></p>
+   
+                                    
+                                    <form>
+                
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div  class="form-group mb-1">
+                                                    <label for="exampleInputEmail1">Email address</label>
+                                                    <input type="email" (change)="validateEmail(email)" name="email" class="form-control" id="exampleInputEmail1" placeholder="abc@gmail.com" [(ngModel)]="email" [ngModelOptions]="{ updateOn: 'blur' }" #emailerror="ngModel" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$ "  required />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div  class="form-group mb-1">
+                                                    <label for="exampleInputEmail1">Téléphone</label><br>
+                                                    <input type="text"
+                                                    name="phone_number"
+                                                    class="form-control phone"
+                                                    ng2TelInput
+                                                    [ng2TelInputOptions]="{initialCountry: 'cm'}"
+                                                    (hasError)="hasError($event)"
+                                                    (ng2TelOutput)="getNumber($event)"
+                                                    (intlTelInputObject)="telInputObject($event)"
+                                                    (countryChange)="onCountryChange($event)" />
+        
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group mb-1">
+                                                    <label for="exampleInputPassword1">Prénom</label>
+                                                    <input type="text" [(ngModel)]="prenom" name="prenom" class="form-control" id="exampleInputPassword1" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group mb-1">
+                                                    <label for="exampleInputPassword1">Nom</label>
+                                                    <input type="text" [(ngModel)]="nom" name="nom" class="form-control" id="exampleInputPassword1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6" style="background-color: white;">
+                                                <label for="exampleInputEmail1">Mot de passe</label>
+                                                <div class="input-group mb-1 mt-2">
+                                                    <input [type]="showo ? 'text' : 'password'" [(ngModel)]="password" name="opassword" class="form-control" id="exampleInputPassword1" />
+                                                    <span (click)="passwordo()" class="hand input-group-text">{{showo ? 'Cacher' : 'Voir'}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6" style="background-color: white;">
+                                                <label for="exampleInputEmail1">Confirmation</label>
+                                                <div class="input-group mb-1 mt-2">
+                                                    <input [type]="showc ? 'text' : 'password'" [(ngModel)]="cpassword" name="cpassword" class="form-control" id="exampleInputPassword1" />
+                                                    <span (click)="passwordc()" class="hand input-group-text">{{showc ? 'Cacher' : 'Voir'}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-check mb-3 mt-2 ">
+                                            <input class="form-check-input" [(ngModel)]="accept" name="accept" type="checkbox" value="" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                              J'accepte les <a [routerLink]="['/cgv']" class="text-primary ml-1">termes et conditions du service.</a>
+                                            </label> 
+                                        </div>
+                                        <button type="btn" (click)="saveEmail()" class="btn btn-primary">Je crée non compte</button>
+                                        <button *ngIf="loginEmail===false" type="btn" (click)="savePhone()" class="btn btn-primary">Je crée non compte</button>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end card-body -->
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- Row -->
+    </div>
+</div>
